@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    {% load bootstrap5 %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+
+<body>
+    <header class="site-header">
+        <nav class="nav">
+            <ul class="nav">
+                <li class="nav-item"><a class="nav-link link-light" href="/">HOME</a></li>
+                <li class="nav-item"><a class="nav-link link-light" href="/aprendices">APRENDICES</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="site-main container">
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 SENA APP</p>
+        </div>
+    </footer>
+</body>
+
+</html>

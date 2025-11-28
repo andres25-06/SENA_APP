@@ -1,0 +1,121 @@
+/* style.css - Sofia Plus inspired premium styling */
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f6f9;
+    /* Light gray background for the page */
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header / Nav */
+.site-header {
+    background-color: #39a900;
+    /* SENA Green */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.site-header .nav {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    padding: 0.75rem 1.5rem;
+}
+
+.site-header .nav .nav-item a {
+    color: #ffffff;
+    /* White text for links */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease, opacity 0.2s;
+}
+
+.site-header .nav .nav-item a:hover {
+    color: #ffffff;
+    opacity: 0.8;
+}
+
+/* Main Content Container */
+.container {
+    flex: 1;
+    padding: 2rem;
+    background-color: #ffffff;
+    /* White background for content */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+/* Footer */
+.site-footer {
+    background-color: #39a900;
+    /* SENA Green */
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #ffffff;
+    /* White text */
+    margin-top: auto;
+}
+
+/* Footer Container Override - Remove white box */
+.site-footer .container {
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    margin: 0 auto;
+    padding: 0;
+    width: 90%;
+}
+
+/* Headings */
+h1,
+h2,
+h3 {
+    color: #39a900;
+    /* Green headings */
+    margin-bottom: 1rem;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #39a900;
+    border: none;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #2d8500;
+    /* Darker green on hover */
+}
+
+/* Content spacing */
+section {
+    margin-top: 2rem;
+}
+
+/* Utility */
+.text-center {
+    text-align: center;
+}

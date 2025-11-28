@@ -1,0 +1,51 @@
+{% extends 'master.html' %}
+
+{% block title %}
+Detalle del Aprendiz - {{ aprendiz.firstname }} {{ aprendiz.lastname }}
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-success text-white">
+                <h3 class="mb-0">Información del Aprendiz</h3>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-4 fw-bold">Documento:</div>
+                    <div class="col-md-8">{{ aprendiz.document }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4 fw-bold">Nombre Completo:</div>
+                    <div class="col-md-8">{{ aprendiz.firstname }} {{ aprendiz.lastname }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4 fw-bold">Programa:</div>
+                    <div class="col-md-8">{{ aprendiz.program }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4 fw-bold">Correo Electrónico:</div>
+                    <div class="col-md-8">{{ aprendiz.email }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4 fw-bold">Teléfono:</div>
+                    <div class="col-md-8">{{ aprendiz.phone }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4 fw-bold">Ciudad:</div>
+                    <div class="col-md-8">{{ aprendiz.city }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4 fw-bold">Fecha de Nacimiento:</div>
+                    <div class="col-md-8">{{ aprendiz.birthdate }}</div>
+                </div>
+
+                <div class="mt-4 text-center">
+                    <a href="/aprendices" class="btn btn-secondary">Volver a la lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

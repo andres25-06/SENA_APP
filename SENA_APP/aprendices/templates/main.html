@@ -1,0 +1,27 @@
+{% extends "master.html" %}
+
+{% block title %}
+SENA APP
+{% endblock %}
+
+
+{% block content %}
+<center>
+    <h1>Bienvenidos a la APP SENA</h1>
+
+    <h3>Aprendices ADSO</h3>
+
+    <p>Ver los <a href="aprendices/" class="cta-button">aprendices</a></p>
+
+</center>
+
+<section class="tarjeta">
+    <h2>Variables desde el Modelo <strong>Aprendices</strong></h2>
+    <ul>
+        {% for x in aprendices %}
+        <li>{{ x.firstname }}</li>
+        {% endfor %}
+    </ul>
+</section>
+
+{% endblock %}

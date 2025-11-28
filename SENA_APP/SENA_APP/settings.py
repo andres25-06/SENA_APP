@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--sepc^c-qmd#vo9(s-wlxq)i#2(q5*5)s9g!v^-=!%n!1+lb4$'
+SECRET_KEY = 'django-insecure-1bjuglt2lbd^q1ncf*#3arlmqt04ssu4e^_r1%o(y01gj@2*7v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'members',
+    'aprendices',
+    'bootstrap5',
+
 ]
 
 MIDDLEWARE = [
@@ -76,7 +78,7 @@ WSGI_APPLICATION = 'SENA_APP.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'SENAdb.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
