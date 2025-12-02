@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'aprendices',
     'bootstrap5',
+    'instructores',
 
 ]
 

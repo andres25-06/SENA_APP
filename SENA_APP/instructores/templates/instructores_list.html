@@ -1,0 +1,38 @@
+{% extends "master.html" %}
+
+{% block title %}Listado de Instructores{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Listado de Instructores</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Documento</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Especialidad</th>
+                <th>Nivel de Educación</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for instructor in instructores %}
+            <tr>
+                <td><a href="{% url 'instructor_detail' instructor.document %}">{{ instructor.document }}</a></td>
+                <td>{{ instructor.name }}</td>
+                <td>{{ instructor.last_name }}</td>
+                <td>{{ instructor.email }}</td>
+                <td>{{ instructor.phone }}</td>
+                <td>{{ instructor.speciality }}</td>
+                <td>{{ instructor.get_level_education_display }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="mt-3">
+        <a href="/" class="btn btn-secondary">Volver al Inicio</a>
+    </div>
+</div>
+{% endblock %}
