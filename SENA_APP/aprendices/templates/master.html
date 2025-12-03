@@ -4,6 +4,7 @@
 <head>
     {% load static %}
     {% load bootstrap5 %}
+    <link rel="icon" type="image/png" href="{% static 'favicon.png' %}">
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <title>{% block title %}{% endblock %}</title>
     {% bootstrap_css %}
@@ -17,6 +18,7 @@
                 <li class="nav-item"><a class="nav-link link-light" href="/">HOME</a></li>
                 <li class="nav-item"><a class="nav-link link-light" href="/aprendices">APRENDICES</a></li>
                 <li class="nav-item"><a class="nav-link link-light" href="/instructores">INSTRUCTORES</a></li>
+                <li class="nav-item"><a class="nav-link link-light" href="/programas">PROGRAMAS</a></li>
             </ul>
         </nav>
     </header>

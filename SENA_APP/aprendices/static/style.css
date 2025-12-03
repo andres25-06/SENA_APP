@@ -1,121 +1,409 @@
-/* style.css - Sofia Plus inspired premium styling */
+/* Modern SENA App Styling - Green & White Theme */
 
-/* Reset */
+/* Reset & Base */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* Google Fonts - Modern Typography */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    /* SENA Color Palette */
+    --sena-green: #39a900;
+    --sena-green-dark: #2d8500;
+    --sena-green-light: #4bc914;
+    --sena-green-lighter: #e8f5e0;
+    --white: #ffffff;
+    --off-white: #f8faf9;
+    --gray-light: #e5e9ec;
+    --gray-medium: #9ca3af;
+    --gray-dark: #374151;
+    --text-dark: #1f2937;
+    --shadow-sm: 0 2px 8px rgba(57, 169, 0, 0.08);
+    --shadow-md: 0 4px 16px rgba(57, 169, 0, 0.12);
+    --shadow-lg: 0 8px 32px rgba(57, 169, 0, 0.16);
+}
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f4f6f9;
-    /* Light gray background for the page */
-    color: #333;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #f8faf9 0%, #e8f5e0 100%);
+    color: var(--text-dark);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    line-height: 1.6;
 }
 
-/* Header / Nav */
+/* ========== HEADER & NAVIGATION ========== */
 .site-header {
-    background-color: #39a900;
-    /* SENA Green */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, var(--sena-green) 0%, var(--sena-green-dark) 100%);
+    box-shadow: var(--shadow-md);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
 }
 
 .site-header .nav {
     display: flex;
-    justify-content: flex-start;
-    gap: 1.5rem;
-    padding: 0.75rem 1.5rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    list-style: none;
+    flex-wrap: wrap;
 }
 
-.site-header .nav .nav-item a {
-    color: #ffffff;
-    /* White text for links */
+.site-header .nav-item {
+    list-style: none;
+}
+
+.site-header .nav-item a {
+    color: var(--white);
     text-decoration: none;
     font-weight: 600;
-    transition: color 0.3s ease, opacity 0.2s;
-}
-
-.site-header .nav .nav-item a:hover {
-    color: #ffffff;
-    opacity: 0.8;
-}
-
-/* Main Content Container */
-.container {
-    flex: 1;
-    padding: 2rem;
-    background-color: #ffffff;
-    /* White background for content */
+    font-size: 0.95rem;
+    padding: 0.65rem 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.3px;
 }
 
-/* Footer */
-.site-footer {
-    background-color: #39a900;
-    /* SENA Green */
-    padding: 1rem 0;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #ffffff;
-    /* White text */
-    margin-top: auto;
+.site-header .nav-item a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    transition: left 0.3s ease;
+    z-index: -1;
 }
 
-/* Footer Container Override - Remove white box */
-.site-footer .container {
-    background-color: transparent;
-    box-shadow: none;
-    border-radius: 0;
+.site-header .nav-item a:hover::before {
+    left: 0;
+}
+
+.site-header .nav-item a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ========== MAIN CONTENT CONTAINER ========== */
+.site-main {
+    flex: 1;
+    padding: 3rem 2rem;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0;
-    width: 90%;
+    width: 100%;
 }
 
-/* Headings */
-h1,
-h2,
+.container {
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(57, 169, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.container:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+/* ========== TYPOGRAPHY ========== */
+h1 {
+    color: var(--sena-green);
+    font-size: 2.75rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--sena-green) 0%, var(--sena-green-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+    animation: fadeInUp 0.6s ease;
+}
+
+h2 {
+    color: var(--sena-green-dark);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    position: relative;
+    padding-bottom: 0.75rem;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--sena-green) 0%, var(--sena-green-light) 100%);
+    border-radius: 2px;
+}
+
 h3 {
-    color: #39a900;
-    /* Green headings */
+    color: var(--gray-dark);
+    font-size: 1.5rem;
+    font-weight: 600;
     margin-bottom: 1rem;
 }
 
-/* Buttons */
+p {
+    color: var(--gray-dark);
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+/* ========== BUTTONS & LINKS ========== */
+.cta-button,
 .btn-primary {
-    background-color: #39a900;
+    display: inline-block;
+    background: linear-gradient(135deg, var(--sena-green) 0%, var(--sena-green-light) 100%);
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
     border: none;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(57, 169, 0, 0.25);
+    position: relative;
+    overflow: hidden;
 }
 
+.cta-button::before,
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.cta-button:hover::before,
+.btn-primary:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.cta-button:hover,
 .btn-primary:hover {
-    background-color: #2d8500;
-    /* Darker green on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(57, 169, 0, 0.35);
 }
 
-/* Content spacing */
-section {
+.cta-button:active,
+.btn-primary:active {
+    transform: translateY(-1px);
+}
+
+/* ========== CARDS & SECTIONS ========== */
+.tarjeta,
+.card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 2rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-light);
+    transition: all 0.3s ease;
+}
+
+.tarjeta:hover,
+.card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--sena-green-lighter);
+    transform: translateY(-4px);
+}
+
+/* ========== LISTS ========== */
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.tarjeta ul li,
+.card ul li {
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    background: var(--sena-green-lighter);
+    border-radius: 8px;
+    border-left: 4px solid var(--sena-green);
+    transition: all 0.2s ease;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.tarjeta ul li:hover,
+.card ul li:hover {
+    background: var(--sena-green-light);
+    color: var(--white);
+    transform: translateX(8px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ========== FOOTER ========== */
+.site-footer {
+    background: linear-gradient(135deg, var(--sena-green-dark) 0%, var(--sena-green) 100%);
+    padding: 2rem 0;
+    text-align: center;
+    color: var(--white);
+    margin-top: auto;
+    box-shadow: 0 -4px 16px rgba(57, 169, 0, 0.15);
+}
+
+.site-footer .container {
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.site-footer p {
+    color: var(--white);
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 0;
+    opacity: 0.95;
+}
+
+/* ========== HERO SECTION ========== */
+.hero-section {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, var(--sena-green-lighter) 0%, var(--white) 100%);
+    border-radius: 16px;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-md);
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* ========== UTILITY CLASSES ========== */
+.text-center {
+    text-align: center;
+}
+
+.mt-1 {
+    margin-top: 0.5rem;
+}
+
+.mt-2 {
+    margin-top: 1rem;
+}
+
+.mt-3 {
+    margin-top: 1.5rem;
+}
+
+.mt-4 {
     margin-top: 2rem;
 }
 
-/* Utility */
-.text-center {
-    text-align: center;
+.mb-1 {
+    margin-bottom: 0.5rem;
+}
+
+.mb-2 {
+    margin-bottom: 1rem;
+}
+
+.mb-3 {
+    margin-bottom: 1.5rem;
+}
+
+.mb-4 {
+    margin-bottom: 2rem;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 768px) {
+    .site-header .nav {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem;
+    }
+
+    .site-header .nav-item a {
+        width: 100%;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .container {
+        padding: 1.5rem;
+    }
+
+    .site-main {
+        padding: 1.5rem 1rem;
+    }
+}
+
+/* ========== SMOOTH SCROLLING ========== */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ========== SELECTION STYLING ========== */
+::selection {
+    background: var(--sena-green);
+    color: var(--white);
+}
+
+::-moz-selection {
+    background: var(--sena-green);
+    color: var(--white);
 }
