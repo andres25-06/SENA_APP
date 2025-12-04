@@ -1,0 +1,178 @@
+{% extends 'master.html' %}
+
+{% block title %}
+Detalle del Curso - {{ curso.code }}
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <!-- Información General del Curso -->
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-header bg-success text-white">
+                <h3 class="mb-0">Información del Curso</h3>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-3 fw-bold">Código:</div>
+                    <div class="col-md-9">{{ curso.code }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3 fw-bold">Nombre del Curso:</div>
+                    <div class="col-md-9">{{ curso.name }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3 fw-bold">Programa de Formación:</div>
+                    <div class="col-md-9">{{ curso.program.name }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3 fw-bold">Instructor Coordinador:</div>
+                    <div class="col-md-9">{{ curso.instructor_coordinator.name }} {{
+                        curso.instructor_coordinator.last_name }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3 fw-bold">Fecha de Inicio:</div>
+                    <div class="col-md-9">{{ curso.start_date|date:"d/m/Y" }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3 fw-bold">Fecha de Finalización:</div>
+                    <div class="col-md-9">{{ curso.end_date|date:"d/m/Y" }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3 fw-bold">Horario:</div>
+                    <div class="col-md-9">{{ curso.schedule }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3 fw-bold">Aula/Ambiente:</div>
+                    <div class="col-md-9">{{ curso.classroom }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3 fw-bold">Estado:</div>
+                    <div class="col-md-9">
+                        {% if curso.state == 'PRO' %}
+                        <span class="badge bg-secondary">{{ curso.get_state_display }}</span>
+                        {% elif curso.state == 'INI' %}
+                        <span class="badge bg-info">{{ curso.get_state_display }}</span>
+                        {% elif curso.state == 'EJE' %}
+                        <span class="badge bg-primary">{{ curso.get_state_display }}</span>
+                        {% elif curso.state == 'FIN' %}
+                        <span class="badge bg-success">{{ curso.get_state_display }}</span>
+                        {% elif curso.state == 'CAN' %}
+                        <span class="badge bg-danger">{{ curso.get_state_display }}</span>
+                        {% elif curso.state == 'SUS' %}
+                        <span class="badge bg-warning text-dark">{{ curso.get_state_display }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3 fw-bold">Capacidad:</div>
+                    <div class="col-md-9">
+                        <div class="progress" style="height: 25px;">
+                            <div class="progress-bar bg-success" role="progressbar"
+                                aria-valuenow="{{ curso.porcentaje_ocupacion }}" aria-valuemin="0" aria-valuemax="100">
+                                {{ curso.aprendices.count }} / {{ curso.max_capacity }}
+                            </div>
+                        </div>
+                        <small class="text-muted">Cupos disponibles: {{ curso.cupos_disponibles }}</small>
+                    </div>
+                </div>
+                {% if curso.observations %}
+                <div class="row mb-3">
+                    <div class="col-md-3 fw-bold">Observaciones:</div>
+                    <div class="col-md-9">{{ curso.observations }}</div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Instructores del Curso -->
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Instructores Asignados</h4>
+            </div>
+            <div class="card-body">
+                {% if instructores_curso %}
+                <table class="table table-sm table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Rol</th>
+                            <th>Fecha de Asignación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for instructor_curso in instructores_curso %}
+                        <tr>
+                            <td>{{ instructor_curso.teacher.name }} {{ instructor_curso.teacher.last_name }}</td>
+                            <td><span class="badge bg-info">{{ instructor_curso.role }}</span></td>
+                            <td>{{ instructor_curso.assignment_date|date:"d/m/Y" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p class="text-muted text-center">No hay instructores asignados a este curso.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Aprendices Inscritos -->
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-header bg-warning text-dark">
+                <h4 class="mb-0">Aprendices Inscritos ({{ aprendices_curso.count }})</h4>
+            </div>
+            <div class="card-body">
+                {% if aprendices_curso %}
+                <table class="table table-sm table-hover">
+                    <thead>
+                        <tr>
+                            <th>Documento</th>
+                            <th>Nombre</th>
+                            <th>Fecha Inscripción</th>
+                            <th>Estado</th>
+                            <th>Nota Final</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for aprendiz_curso in aprendices_curso %}
+                        <tr>
+                            <td>{{ aprendiz_curso.student.document }}</td>
+                            <td>{{ aprendiz_curso.student.firstname }} {{ aprendiz_curso.student.lastname }}</td>
+                            <td>{{ aprendiz_curso.inscription_date|date:"d/m/Y" }}</td>
+                            <td>
+                                {% if aprendiz_curso.state == 'INS' %}
+                                <span class="badge bg-secondary">{{ aprendiz_curso.get_state_display }}</span>
+                                {% elif aprendiz_curso.state == 'ACT' %}
+                                <span class="badge bg-success">{{ aprendiz_curso.get_state_display }}</span>
+                                {% elif aprendiz_curso.state == 'DES' %}
+                                <span class="badge bg-danger">{{ aprendiz_curso.get_state_display }}</span>
+                                {% elif aprendiz_curso.state == 'GRA' %}
+                                <span class="badge bg-primary">{{ aprendiz_curso.get_state_display }}</span>
+                                {% elif aprendiz_curso.state == 'SUS' %}
+                                <span class="badge bg-warning text-dark">{{ aprendiz_curso.get_state_display }}</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if aprendiz_curso.final_grade %}
+                                <strong>{{ aprendiz_curso.final_grade }}</strong>
+                                {% else %}
+                                <span class="text-muted">-</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p class="text-muted text-center">No hay aprendices inscritos en este curso.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="mt-4 text-center">
+            <a href="{% url 'lista_cursos' %}" class="btn btn-secondary">Volver a la lista de cursos</a>
+            <a href="/" class="btn btn-outline-secondary">Ir al Inicio</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
