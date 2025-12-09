@@ -1,0 +1,169 @@
+{% extends "master.html" %}
+
+{% block title %}Editar Aprendiz{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-user-edit"></i> Editar Aprendiz
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <!-- Mensajes de éxito o error -->
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    <!-- Formulario de edición -->
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+
+                        <!-- Mostrar errores generales del formulario -->
+                        {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {{ form.non_field_errors }}
+                        </div>
+                        {% endif %}
+
+                        <div class="row">
+                            <!-- Documento -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.document.id_for_label }}" class="form-label">
+                                    {{ form.document.label }}
+                                    <span class="text-danger">*</span>
+                                </label>
+                                {{ form.document }}
+                                {% if form.document.errors %}
+                                <div class="text-danger small">
+                                    {{ form.document.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Email -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.email.id_for_label }}" class="form-label">
+                                    {{ form.email.label }}
+                                    <span class="text-danger">*</span>
+                                </label>
+                                {{ form.email }}
+                                {% if form.email.errors %}
+                                <div class="text-danger small">
+                                    {{ form.email.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Nombre -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.firstname.id_for_label }}" class="form-label">
+                                    {{ form.firstname.label }}
+                                    <span class="text-danger">*</span>
+                                </label>
+                                {{ form.firstname }}
+                                {% if form.firstname.errors %}
+                                <div class="text-danger small">
+                                    {{ form.firstname.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Apellido -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.lastname.id_for_label }}" class="form-label">
+                                    {{ form.lastname.label }}
+                                    <span class="text-danger">*</span>
+                                </label>
+                                {{ form.lastname }}
+                                {% if form.lastname.errors %}
+                                <div class="text-danger small">
+                                    {{ form.lastname.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Teléfono -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.phone.id_for_label }}" class="form-label">
+                                    {{ form.phone.label }}
+                                    <span class="text-danger">*</span>
+                                </label>
+                                {{ form.phone }}
+                                {% if form.phone.errors %}
+                                <div class="text-danger small">
+                                    {{ form.phone.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Fecha de Nacimiento -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.birthdate.id_for_label }}" class="form-label">
+                                    {{ form.birthdate.label }}
+                                    <span class="text-danger">*</span>
+                                </label>
+                                {{ form.birthdate }}
+                                {% if form.birthdate.errors %}
+                                <div class="text-danger small">
+                                    {{ form.birthdate.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Ciudad -->
+                            <div class="col-md-12 mb-3">
+                                <label for="{{ form.city.id_for_label }}" class="form-label">
+                                    {{ form.city.label }}
+                                    <span class="text-danger">*</span>
+                                </label>
+                                {{ form.city }}
+                                {% if form.city.errors %}
+                                <div class="text-danger small">
+                                    {{ form.city.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-md-12">
+                                <div class="d-flex justify-content-between">
+                                    <a href="{% url 'aprendices:aprendices' %}" class="btn btn-secondary">
+                                        <i class="fas fa-arrow-left"></i> Cancelar
+                                    </a>
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="fas fa-save"></i> Guardar Cambios
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <small class="text-muted">
+                                    <span class="text-danger">*</span> Campos obligatorios
+                                </small>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

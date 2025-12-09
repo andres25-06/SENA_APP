@@ -1,0 +1,68 @@
+{% extends "master.html" %}
+
+{% block title %}Eliminar Programa{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-danger text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-trash-alt"></i> Eliminar Programa
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning" role="alert">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>¡Advertencia!</strong> Esta acción no se puede deshacer. Al eliminar este programa,
+                        también se eliminarán todos los cursos asociados.
+                    </div>
+
+                    <h5>¿Está seguro que desea eliminar el siguiente programa?</h5>
+
+                    <div class="card mt-4 mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Código:</strong> {{ object.codigo }}</p>
+                                    <p><strong>Nombre:</strong> {{ object.nombre }}</p>
+                                    <p><strong>Nivel de Formación:</strong> {{ object.get_nivel_formacion_display }}</p>
+                                    <p><strong>Modalidad:</strong> {{ object.get_modalidad_display }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Duración:</strong> {{ object.duracion_meses }} meses / {{
+                                        object.duracion_horas }} horas</p>
+                                    <p><strong>Centro:</strong> {{ object.centro_formacion }}</p>
+                                    <p><strong>Regional:</strong> {{ object.regional }}</p>
+                                    <p><strong>Estado:</strong>
+                                        {% if object.estado == 'ACTIVO' %}
+                                        <span class="badge bg-success">Activo</span>
+                                        {% elif object.estado == 'INACTIVO' %}
+                                        <span class="badge bg-secondary">Inactivo</span>
+                                        {% else %}
+                                        <span class="badge bg-warning">{{ object.get_estado_display }}</span>
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'programas:programas' %}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash-alt"></i> Confirmar Eliminación
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

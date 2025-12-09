@@ -1,0 +1,270 @@
+{% extends "master.html" %}
+
+{% block title %}Agregar Programa{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-plus-circle"></i> Agregar Programa de Formación
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <!-- Mensajes de éxito o error -->
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    <!-- Formulario de creación -->
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+
+                        <!-- Mostrar errores generales del formulario -->
+                        {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {{ form.non_field_errors }}
+                        </div>
+                        {% endif %}
+
+                        <div class="row">
+                            <!-- Código -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.codigo.id_for_label }}" class="form-label">
+                                    {{ form.codigo.label }}
+                                    <span class="text-danger">*</span>
+                                </label>
+                                {{ form.codigo }}
+                                {% if form.codigo.errors %}
+                                <div class="text-danger small">
+                                    {{ form.codigo.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Nombre -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.nombre.id_for_label }}" class="form-label">
+                                    {{ form.nombre.label }}
+                                    <span class="text-danger">*</span>
+                                </label>
+                                {{ form.nombre }}
+                                {% if form.nombre.errors %}
+                                <div class="text-danger small">
+                                    {{ form.nombre.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Nivel de Formación -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.nivel_formacion.id_for_label }}" class="form-label">
+                                    {{ form.nivel_formacion.label }}
+                                    <span class="text-danger">*</span>
+                                </label>
+                                {{ form.nivel_formacion }}
+                                {% if form.nivel_formacion.errors %}
+                                <div class="text-danger small">
+                                    {{ form.nivel_formacion.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Modalidad -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.modalidad.id_for_label }}" class="form-label">
+                                    {{ form.modalidad.label }}
+                                    <span class="text-danger">*</span>
+                                </label>
+                                {{ form.modalidad }}
+                                {% if form.modalidad.errors %}
+                                <div class="text-danger small">
+                                    {{ form.modalidad.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Duración en Meses -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.duracion_meses.id_for_label }}" class="form-label">
+                                    {{ form.duracion_meses.label }}
+                                    <span class="text-danger">*</span>
+                                </label>
+                                {{ form.duracion_meses }}
+                                {% if form.duracion_meses.errors %}
+                                <div class="text-danger small">
+                                    {{ form.duracion_meses.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Duración en Horas -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.duracion_horas.id_for_label }}" class="form-label">
+                                    {{ form.duracion_horas.label }}
+                                    <span class="text-danger">*</span>
+                                </label>
+                                {{ form.duracion_horas }}
+                                {% if form.duracion_horas.errors %}
+                                <div class="text-danger small">
+                                    {{ form.duracion_horas.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Descripción -->
+                            <div class="col-md-12 mb-3">
+                                <label for="{{ form.descripcion.id_for_label }}" class="form-label">
+                                    {{ form.descripcion.label }}
+                                </label>
+                                {{ form.descripcion }}
+                                {% if form.descripcion.errors %}
+                                <div class="text-danger small">
+                                    {{ form.descripcion.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Competencias -->
+                            <div class="col-md-12 mb-3">
+                                <label for="{{ form.competencias.id_for_label }}" class="form-label">
+                                    {{ form.competencias.label }}
+                                </label>
+                                {{ form.competencias }}
+                                {% if form.competencias.errors %}
+                                <div class="text-danger small">
+                                    {{ form.competencias.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Perfil de Egreso -->
+                            <div class="col-md-12 mb-3">
+                                <label for="{{ form.perfil_egreso.id_for_label }}" class="form-label">
+                                    {{ form.perfil_egreso.label }}
+                                </label>
+                                {{ form.perfil_egreso }}
+                                {% if form.perfil_egreso.errors %}
+                                <div class="text-danger small">
+                                    {{ form.perfil_egreso.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Requisitos de Ingreso -->
+                            <div class="col-md-12 mb-3">
+                                <label for="{{ form.requisitos_ingreso.id_for_label }}" class="form-label">
+                                    {{ form.requisitos_ingreso.label }}
+                                </label>
+                                {{ form.requisitos_ingreso }}
+                                {% if form.requisitos_ingreso.errors %}
+                                <div class="text-danger small">
+                                    {{ form.requisitos_ingreso.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Centro de Formación -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.centro_formacion.id_for_label }}" class="form-label">
+                                    {{ form.centro_formacion.label }}
+                                </label>
+                                {{ form.centro_formacion }}
+                                {% if form.centro_formacion.errors %}
+                                <div class="text-danger small">
+                                    {{ form.centro_formacion.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Regional -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.regional.id_for_label }}" class="form-label">
+                                    {{ form.regional.label }}
+                                </label>
+                                {{ form.regional }}
+                                {% if form.regional.errors %}
+                                <div class="text-danger small">
+                                    {{ form.regional.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Estado -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.estado.id_for_label }}" class="form-label">
+                                    {{ form.estado.label }}
+                                    <span class="text-danger">*</span>
+                                </label>
+                                {{ form.estado }}
+                                {% if form.estado.errors %}
+                                <div class="text-danger small">
+                                    {{ form.estado.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Fecha de Creación -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.fecha_creacion.id_for_label }}" class="form-label">
+                                    {{ form.fecha_creacion.label }}
+                                </label>
+                                {{ form.fecha_creacion }}
+                                {% if form.fecha_creacion.errors %}
+                                <div class="text-danger small">
+                                    {{ form.fecha_creacion.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-md-12">
+                                <div class="d-flex justify-content-between">
+                                    <a href="{% url 'programas:programa_list' %}" class="btn btn-secondary">
+                                        <i class="fas fa-arrow-left"></i> Cancelar
+                                    </a>
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="fas fa-save"></i> Guardar Programa
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <small class="text-muted">
+                                    <span class="text-danger">*</span> Campos obligatorios
+                                </small>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

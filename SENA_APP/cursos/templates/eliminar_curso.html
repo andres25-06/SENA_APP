@@ -1,0 +1,72 @@
+{% extends "master.html" %}
+
+{% block title %}Eliminar Curso{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-danger text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-trash-alt"></i> Eliminar Curso
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning" role="alert">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>¡Advertencia!</strong> Esta acción no se puede deshacer. Al eliminar este curso, también
+                        se eliminarán todas las inscripciones de aprendices asociadas.
+                    </div>
+
+                    <h5>¿Está seguro que desea eliminar el siguiente curso?</h5>
+
+                    <div class="card mt-4 mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Código:</strong> {{ object.code }}</p>
+                                    <p><strong>Nombre:</strong> {{ object.name }}</p>
+                                    <p><strong>Programa:</strong> {{ object.program.nombre }}</p>
+                                    <p><strong>Instructor Coordinador:</strong> {{ object.instructor_coordinator.name }}
+                                        {{ object.instructor_coordinator.last_name }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Fecha de Inicio:</strong> {{ object.start_date|date:"d/m/Y" }}</p>
+                                    <p><strong>Fecha de Fin:</strong> {{ object.end_date|date:"d/m/Y" }}</p>
+                                    <p><strong>Cupos Máximos:</strong> {{ object.max_capacity }}</p>
+                                    <p><strong>Estado:</strong>
+                                        {% if object.state == 'PLANIFICADO' %}
+                                        <span class="badge bg-info">Planificado</span>
+                                        {% elif object.state == 'EN_CURSO' %}
+                                        <span class="badge bg-success">En Curso</span>
+                                        {% elif object.state == 'FINALIZADO' %}
+                                        <span class="badge bg-secondary">Finalizado</span>
+                                        {% elif object.state == 'CANCELADO' %}
+                                        <span class="badge bg-danger">Cancelado</span>
+                                        {% else %}
+                                        <span class="badge bg-warning">{{ object.get_state_display }}</span>
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'cursos:cursos' %}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash-alt"></i> Confirmar Eliminación
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
